@@ -13,21 +13,21 @@ fun main() {
         dictionary.add(word)
     }
 
-    val quantityWords = dictionary.size  //Количество слов в словаре
-    val dictionary2 = dictionary.filter{ //Фильтруем для выученных слов
-        it.correctAnswerCount != 0
-    }
-    val quantityWordsCorrect = dictionary2.size //Количество выученных слов
-    val percentageRatio = (quantityWordsCorrect.toFloat() / quantityWords.toFloat()) * 100 //Процентное соотношение
-
-
-
     while(true) {
-        println("Меню: 1- Учить слова, 2 - Статистика, 0 - Выход")
+
+
+        //СТАРТ МЕНЮ
+        println("Меню: 2 - Статистика, 0 - Выход")
         println("Выберите нужный пункт меню")
         val userInput = readLine()!!.toInt()
         when (userInput) {
-            2 ->println("Количество слов в словаре: $quantityWords\nВыучено слов ${dictionary2.size}  из $quantityWords | $percentageRatio%")
+            2 -> {  val dictionaryFilter = dictionary.filter{ //Фильтруем для выученных слов
+                it.correctAnswerCount >= 3
+            }
+                val quantityWordsCorrect = dictionaryFilter.size //Количество выученных слов
+                val percentageRatio = (100 / dictionary.size) * quantityWordsCorrect //Процентное соотношение
+                println("Количество слов в словаре: ${dictionary.size}\nВыучено слов ${dictionaryFilter.size} " +
+                    "из ${dictionary.size} | $percentageRatio%")}
             0 -> break
             else -> println("Такого пункта меню не существует, попробуйте ещё раз")
         }
