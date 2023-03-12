@@ -19,7 +19,7 @@ fun main() {
         when (readLine()?.toInt()) {
             1 -> {
                 while (true) {
-                    val unlearnedWords = dictionary.filter { it.correctAnswerCount < 3 }.take(4).shuffled()
+                    val unlearnedWords = dictionary.filter { it.correctAnswerCount < 3 }.shuffled().take(4)
                     if(unlearnedWords.isNotEmpty()) {
                         val correctAnswerWord = unlearnedWords.random().original
                         println(
