@@ -13,12 +13,27 @@ fun main() {
     }
 
     while (true) {
-
-
         //СТАРТ МЕНЮ
         println("Меню: 1 - Учить слова, 2 - Статистика, 0 - Выход")
 
         when (readLine()?.toInt()) {
+            1 -> {
+                while (true) {
+                    val unlearnedWords = dictionary.filter { it.correctAnswerCount < 3 }.shuffled().take(4)
+                    if(unlearnedWords.isNotEmpty()) {
+                        val correctAnswerWord = unlearnedWords.random().original
+                        println(
+                            "$correctAnswerWord\n1 - ${unlearnedWords[0].translate}, 2 - ${unlearnedWords[1].translate}, " +
+                                    "3 - ${unlearnedWords[2].translate}, 4 - ${unlearnedWords[3].translate}")
+                        println("Введите праильный вариант, если хотите выйти в главное меню, нажмите 0")
+                        if(readLine()?.toInt() == 0) break
+                        }
+                    else {
+                        println("Вы выучили все слова")
+                        break
+                    }
+                }
+            }
             2 -> {
                 val totalQuantityWords = dictionary.size
                 val quantityWordsCorrect =
