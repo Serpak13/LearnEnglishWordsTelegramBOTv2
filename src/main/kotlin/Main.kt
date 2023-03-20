@@ -21,13 +21,21 @@ fun main() {
                 while (true) {
                     val unlearnedWords = dictionary.filter { it.correctAnswerCount < 3 }.shuffled().take(4)
                     if(unlearnedWords.isNotEmpty()) {
-                        val correctAnswerWord = unlearnedWords.random().original
+                        //val correctAnswerWord = unlearnedWords.random().original //загаданное слово
+                        val correctAnswerWord = unlearnedWords.random() //загаданное слово
+                        val originalWord = correctAnswerWord.original // Ориганал
+                        val translateWord = correctAnswerWord.translate // Перевод
+                        val indexCorrectAnswerWord = unlearnedWords.indexOf(correctAnswerWord) // Индекс элемента
                         println(
-                            "$correctAnswerWord\n1 - ${unlearnedWords[0].translate}, 2 - ${unlearnedWords[1].translate}, " +
-                                    "3 - ${unlearnedWords[2].translate}, 4 - ${unlearnedWords[3].translate}")
+                            "$originalWord\n1 - ${unlearnedWords[0].translate}, 2 - ${unlearnedWords[1].translate}, " +
+                                    "3 - ${unlearnedWords[2].translate}, 4 - ${unlearnedWords[3].translate}"
+                        )
                         println("Введите праильный вариант, если хотите выйти в главное меню, нажмите 0")
-                        if(readLine()?.toInt() == 0) break
-                        }
+                        val userInput = readLine()?.toInt()
+                        if (userInput == 0) break // выход в главное меню
+                        else if (userInput!! - 1 == indexCorrectAnswerWord) println("ПРАВИЛЬНО") //Сравнение
+                        else println("Неправильно - $originalWord [$translateWord]")
+                    }
                     else {
                         println("Вы выучили все слова")
                         break
