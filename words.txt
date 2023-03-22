@@ -1,9 +1,12 @@
-hello|привет|1
+hello|привет|0
+cat|кошка|0
 dog|собака|0
-cat|кошка|2
-thank you|спасибо|4
-turtle|черепаха|1
-bull|бык|2
-water|вода|1
-tree|дерево|0
-book|книга|2
+thank you|спасибо|0
+bull|бык|0
+bread|хлеб|0
+home|дом|0
+bird|птица|0
+mouse|мыш|0
+keyboard|клавиатура|0
+legacy|наследие|0
+country|страна|0

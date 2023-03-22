@@ -1,4 +1,6 @@
+import java.io.BufferedWriter
 import java.io.File
+import java.util.Dictionary
 
 
 fun main() {
@@ -20,11 +22,10 @@ fun main() {
             1 -> {
                 while (true) {
                     val unlearnedWords = dictionary.filter { it.correctAnswerCount < 3 }.shuffled().take(4)
-                    if(unlearnedWords.isNotEmpty()) {
-                        //val correctAnswerWord = unlearnedWords.random().original //загаданное слово
-                        val correctAnswerWord = unlearnedWords.random() //загаданное слово
-                        val originalWord = correctAnswerWord.original // Ориганал
-                        val translateWord = correctAnswerWord.translate // Перевод
+                    if (unlearnedWords.isNotEmpty()) {
+                        val correctAnswerWord = unlearnedWords.random() //Загаданное слово
+                        val originalWord = correctAnswerWord.original // Ориганал загаданного слова
+                        val translateWord = correctAnswerWord.translate // Перевод загаданного слова
                         val indexCorrectAnswerWord = unlearnedWords.indexOf(correctAnswerWord) // Индекс элемента
                         println(
                             "$originalWord\n1 - ${unlearnedWords[0].translate}, 2 - ${unlearnedWords[1].translate}, " +
@@ -33,15 +34,19 @@ fun main() {
                         println("Введите праильный вариант, если хотите выйти в главное меню, нажмите 0")
                         val userInput = readLine()?.toInt()
                         if (userInput == 0) break // выход в главное меню
-                        else if (userInput!! - 1 == indexCorrectAnswerWord) println("ПРАВИЛЬНО") //Сравнение
-                        else println("Неправильно - $originalWord [$translateWord]")
-                    }
-                    else {
+                        else if (userInput == indexCorrectAnswerWord + 1) {  //Сравнение
+                            println("ПРАВИЛЬНО")
+                            correctAnswerWord.correctAnswerCount ++   //Инкремент счётчика правильных слов
+                            println(dictionary)
+                           saveDictionary(dictionary)
+                        } else println("Неправильно - $originalWord [$translateWord]")
+                    } else {
                         println("Вы выучили все слова")
                         break
                     }
                 }
             }
+
             2 -> {
                 val totalQuantityWords = dictionary.size
                 val quantityWordsCorrect =
@@ -54,6 +59,20 @@ fun main() {
             else -> println("Такого пункта меню не существует, попробуйте ещё раз")
         }
     }
+}
+
+fun saveDictionary(dictionary: List<Word>){
+    val writer = File("words.txt")
+    writer.writeText("")
+    for (i in dictionary){
+        writer.appendText(i.original)
+        writer.appendText("|")
+        writer.appendText(i.translate)
+        writer.appendText("|")
+        writer.appendText(i.correctAnswerCount.toString())
+        writer.appendText("\n")
+    }
+
 }
 
 data class Word(
