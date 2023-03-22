@@ -37,7 +37,6 @@ fun main() {
                         else if (userInput == indexCorrectAnswerWord + 1) {  //Сравнение
                             println("ПРАВИЛЬНО")
                             correctAnswerWord.correctAnswerCount ++   //Инкремент счётчика правильных слов
-                            println(dictionary)
                            saveDictionary(dictionary)
                         } else println("Неправильно - $originalWord [$translateWord]")
                     } else {
