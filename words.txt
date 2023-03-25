@@ -1,12 +1,12 @@
-hello|привет|0
-cat|кошка|0
-dog|собака|0
-thank you|спасибо|0
-bull|бык|0
-bread|хлеб|0
-home|дом|0
-bird|птица|0
-mouse|мыш|0
+hello|привет|3
+cat|кошка|3
+dog|собака|3
+thank you|спасибо|3
+bull|бык|4
+bread|хлеб|5
+home|дом|3
+bird|птица|3
+mouse|мыш|3
 keyboard|клавиатура|0
 legacy|наследие|0
-country|страна|0
+country|страна|3
