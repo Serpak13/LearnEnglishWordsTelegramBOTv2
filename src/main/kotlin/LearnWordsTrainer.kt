@@ -18,7 +18,7 @@ class LearnWordsTrainer(private val learnedAnswerCount: Int = 3, private val cou
 
     fun getStatistics(): Statistics {
         val totalQuantityWords = dictionary.size
-        val learned = dictionary.filter { it.correctAnswerCount >= 3 }.size//Количество выученных слов
+        val learned = dictionary.filter { it.correctAnswerCount >= learnedAnswerCount }.size//Количество выученных слов
         val percentageRatio = (100 / dictionary.size) * learned //Процентное соотношение
         return Statistics(learned, totalQuantityWords, percentageRatio)
     }
